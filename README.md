@@ -16,9 +16,56 @@ three hierarchical classification models were employed in this study: 1) Local c
 
 There are instructions for `NanoTracer`:
 
-> data
-  > 
-
+```
+|   flat_model.py
+|   hiclass_model.py
+|   plot_contour_LCPN.py
+|   predict.py
+|
++---data
+|       X_test.txt
+|       X_test_Troll.txt
+|       X_train.txt
+|       y_test_flat.txt
+|       y_test_hiclass.csv
+|       y_test_Troll_flat.txt
+|       y_test_Troll_hiclass.csv
+|       y_train_flat.txt
+|       y_train_hiclass.csv
+|
+\---models
+    +---flat
+    |       BayesionOptimazation.log
+    |
+    +---LCPL
+    |       BayesionOptimazation.log
+    |       level0.pickle
+    |       level1.pickle
+    |       level2.pickle
+    |       level3.pickle
+    |
+    +---LCPN
+    |       BayesionOptimazation.log
+    |       MgP.Engineered.Mag.EA.pickle
+    |       MgP.Engineered.Mag.EP.pickle
+    |       MgP.Engineered.Mag.ES.pickle
+    |       MgP.Engineered.Mag.pickle
+    |       MgP.Engineered.Mgh.EP.pickle
+    |       MgP.Engineered.Mgh.ES.pickle
+    |       MgP.Engineered.Mgh.pickle
+    |       MgP.Engineered.pickle
+    |       MgP.Incidental.pickle
+    |       MgP.Natural.pickle
+    |       MgP.pickle
+    |
+    \---LCPPN
+            BayesionOptimazation.log
+            Engineered.pickle
+            Mag.pickle
+            Mgh.pickle
+            MgP.pickle
+            
+```
 
 ## Contact Us
 
