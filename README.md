@@ -14,15 +14,15 @@
 three hierarchical classification models were employed in this study: 1) Local classifier per node (LCPN, a), where several binary classifiers are trained for each node in the hierarchy (excluding the root node). 2) Local classifier per parent node (LCPPN, b), where multiple multi-class classifiers are trained for each parent node to predict the children's nodes in the hierarchy. 3) Local classifier per level (LCPL, c), where a multi-class classifier is trained for each level in the hierarchy. Our disclosure code incorporates four implementations of hierarchical classification models for the traceability of magnetic nanoparticles.
 
 
-There are instructions for `NanoTracer`:
+There are files for `NanoTracer`:
 
 ```
-|   flat_model.py
-|   hiclass_model.py
-|   plot_contour_LCPN.py
-|   predict.py
+|   flat_model.py  # flat classification modeling
+|   hiclass_model.py  # hierarchical classification modeling
+|   plot_contour_LCPN.py # class boundary plot using LCPN model as an example
+|   predict.py # predict the new samples
 |
-+---data
++---data    # training data and test data
 |       X_test.txt
 |       X_test_Troll.txt
 |       X_train.txt
