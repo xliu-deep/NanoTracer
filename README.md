@@ -68,9 +68,9 @@ There are files for `NanoTracer`:
 ```
 
 ## Contact Us
-Source recognition of magnetic iron oxide nanoparticles by hierarchical machine learning-aided iron-oxygen isotopic fingerprinting  
+`NanoTracer` is for our research publication "Source recognition of magnetic iron oxide nanoparticles by hierarchical machine learning-aided iron-oxygen isotopic fingerprinting"  
 
-Hang Yang, Xuezhi Yang, Qinghua Zhang, Dawei Lu, Weichao Wang, Huazhou Zhang, Yunbo Yu, Xian Liu*, Aiqian Zhang, Qian Liu*, Guibin Jiang
+ Hang Yang, Xuezhi Yang, Qinghua Zhang, Dawei Lu, Weichao Wang, Huazhou Zhang, Yunbo Yu, Xian Liu*, Aiqian Zhang, Qian Liu*, Guibin Jiang
 
 >Email:xianliu@rcees.ac.cn
 >Email:qianliu@rcees.ac.cn
