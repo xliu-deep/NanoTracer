@@ -15,38 +15,39 @@ three hierarchical classification models were employed in this study: 1) Local c
 
 
 There are files for `NanoTracer`:
-
 ```
++---—Scripts for model training, predicting and visualization
+|
 |   flat_model.py  # flat classification modeling
 |   hiclass_model.py  # hierarchical classification modeling
 |   plot_contour_LCPN.py # class boundary plot using LCPN model as an example
 |   predict.py # predict the new samples
 |
 +---data    # training data and test data
-|       X_test.txt
-|       X_test_Troll.txt
-|       X_train.txt
-|       y_test_flat.txt
-|       y_test_hiclass.csv
-|       y_test_Troll_flat.txt
-|       y_test_Troll_hiclass.csv
-|       y_train_flat.txt
-|       y_train_hiclass.csv
+|       X_test.txt  # 142 NMPs species from the published data
+|       X_test_Troll.txt  # 76 NMPs species from the Troll et al
+|       X_train.txt # 113 training samples
+|       y_test_flat.txt # label data of 142 NMPs species from the published data for flat model
+|       y_test_hiclass.csv # label data of 142 NMPs species from the published data for hierchical model
+|       y_test_Troll_flat.txt # label data of 76 NMPs species from the Troll et al for flat model
+|       y_test_Troll_hiclass.csv # label data of 76 NMPs species from the Troll et al for hierchical model
+|       y_train_flat.txt  # label data of 113 training samples for flat model 
+|       y_train_hiclass.csv # label data of 113 training samples for hierchical model
 |
 \---models
-    +---flat
-    |       BayesionOptimazation.log
+    +---flat # All combinations of hyperparameters and their corresponding results during the flat model training process.
+    |       BayesionOptimazation.log 
     |
-    +---LCPL
+    +---LCPL # All combinations of hyperparameters and their corresponding results during the LCPL model training process.
     |       BayesionOptimazation.log
-    |       level0.pickle
+    |       level0.pickle # The model trained with the optimal combination of hyperparameters on different hierchical levels.
     |       level1.pickle
     |       level2.pickle
     |       level3.pickle
     |
-    +---LCPN
+    +---LCPN # All combinations of hyperparameters and their corresponding results during the LCPN model training process.
     |       BayesionOptimazation.log
-    |       MgP.Engineered.Mag.EA.pickle
+    |       MgP.Engineered.Mag.EA.pickle # The model trained with the optimal combination of hyperparameters on different hierchical levels.
     |       MgP.Engineered.Mag.EP.pickle
     |       MgP.Engineered.Mag.ES.pickle
     |       MgP.Engineered.Mag.pickle
@@ -58,9 +59,9 @@ There are files for `NanoTracer`:
     |       MgP.Natural.pickle
     |       MgP.pickle
     |
-    \---LCPPN
+    \---LCPPN # All combinations of hyperparameters and their corresponding results during the LCPPN model training process.
             BayesionOptimazation.log
-            Engineered.pickle
+            Engineered.pickle # The model trained with the optimal combination of hyperparameters on different hierchical levels.
             Mag.pickle
             Mgh.pickle
             MgP.pickle

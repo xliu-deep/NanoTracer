@@ -1,24 +1,13 @@
 import pandas as pd
-import pickle
 import csv
 from xgboost import XGBClassifier
-import networkx as nx
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.model_selection import LeaveOneOut
 from hiclass import LocalClassifierPerNode, LocalClassifierPerParentNode, LocalClassifierPerLevel
-from hiclass import Classifier
-from hiclass.Classifier import NodeClassifier
-from sklearn.metrics import f1_score
 from hiclass.metrics import f1,precision,recall
 import numpy as np
-import shap
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 
 
 def predict(hiclass):
-	# load model parameters
+	# load saved parameters
 	data = pd.read_csv(f'models/{hiclass}/BayesionOptimazation.log',
 			header = 0, index_col = None)
 	new_data =data.sort_values(by='F1',ascending=False)
@@ -27,22 +16,11 @@ def predict(hiclass):
 	xgb = XGBClassifier(max_depth=int(max_depth), learning_rate=learning_rate,
 							n_estimators=int(n_estimators), booster='gbtree')
 
-	if hiclass == 'lcpl':
-		model = LocalClassifierPerLevel(local_classifier=xgb)
-		model.fit(X, y)  # placeholder must be explicited
-	elif hiclass == 'lcppn':
-		model = LocalClassifierPerParentNode(local_classifier=xgb)
-		model.fit(X, y)
-	elif hiclass == 'lcpn':
-		model = LocalClassifierPerNode(local_classifier=xgb)
-		model.fit(X, y)
-	elif hiclass == 'flat':
-		model = xgb
-		model.fit(X, y_flat)
 
+	model = LocalClassifierPerNode(local_classifier=xgb)
+	model.fit(X, y)
 	y_pred = model.predict(X_test)	# test set
 	print(y_pred)
-
 
 	if hiclass == 'flat':
 		y_true = y_test_flat
@@ -63,7 +41,7 @@ label_files = ['data/y_test_hiclass.csv']
 label_flat_files = ['data/y_test_flat.txt']
 
 
-# load traning set X,y
+# load training set X,y
 X = np.loadtxt('data/X_train.txt',delimiter='\t')
 y = []
 with open('data/y_train_hiclass.csv', 'r') as csvfile:
@@ -74,7 +52,7 @@ y = np.array(y)
 y_flat = np.loadtxt('data/y_train_flat.txt',dtype='str')
 
 
-# load test set X,y
+# load test set X,y or any data you desired to test
 i = 0
 X_test = np.loadtxt(data_files[i], delimiter='\t')
 y_test = []

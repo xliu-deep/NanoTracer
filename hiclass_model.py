@@ -4,15 +4,9 @@ import csv
 from functools import partial
 
 import numpy as np
-import numpy.ma as ma
-import matplotlib.pyplot as plt
-import networkx as nx
 
-from hiclass.metrics import f1,precision,recall
-from hiclass import LocalClassifierPerNode, LocalClassifierPerParentNode, LocalClassifierPerLevel
-from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
-from hiclass.metrics import f1,precision,recall
+from hiclass.metrics import f1
 from sklearn.model_selection import LeaveOneOut
 
 from pyGPGO.covfunc import matern32
@@ -21,12 +15,9 @@ from pyGPGO.surrogates.GaussianProcess import GaussianProcess
 from pyGPGO.GPGO import GPGO
 
 
-
-np.random.seed()
 xgb = XGBClassifier()
 
-
-# load the training data
+# load the training data or any data you desired to train
 X = np.loadtxt('data/X_train.txt',delimiter='\t')
 y = []
 with open('data/y_train_hiclass.csv', 'r') as csvfile:
@@ -35,10 +26,10 @@ with open('data/y_train_hiclass.csv', 'r') as csvfile:
 		y.append(row)
 y = np.array(y)
 
-
+# Leave-one-out validation
 loo = LeaveOneOut()
 
-
+# Hyperparameter optimization for hierarchical classification
 def BP_Search(mcc_model, learning_rate,n_estimators,max_depth):
 	prediction = []
 	# print(learning_rate,n_estimators,max_depth)
@@ -63,6 +54,7 @@ def BP_Search(mcc_model, learning_rate,n_estimators,max_depth):
 	return f1_score
 
 
+# hierarchical strategies
 lcpl = ['lcpl', 'LocalClassifierPerLevel']
 lcppn = ['lcppn', 'LocalClassifierPerParentNode']
 lcpn = ['lcpn', 'LocalClassifierPerNode']
@@ -70,7 +62,6 @@ hiclass_models = [lcpl,lcppn,lcpn]
 
 
 for hiclassmodel in hiclass_models:
-
 	# restore the hyperparameter
 	if not os.path.exists(f'models/{hiclassmodel[0]}'):
 		os.mkdir(f'models/{hiclassmodel[0]}')
@@ -78,7 +69,6 @@ for hiclassmodel in hiclass_models:
 	with open(log_file,'w') as f:
 		f.write(','.join(['learning_rate', 'n_estimators',
 			'max_depth','F1'])+'\n')
-
 	cov = matern32()
 	gp = GaussianProcess(cov)
 	acq = Acquisition(mode='UCB')
