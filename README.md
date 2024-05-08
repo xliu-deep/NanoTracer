@@ -1,5 +1,5 @@
 # NanoTracer
-![image](https://img.shields.io/github/release/xliu-deep/NanoTracer)
+![image](![numpy](https://img.shields.io/badge/numpy-v1.19-blue))
 
 
 > Advanced Machine Learning for Iron Oxide Nanoparticle Source Detection
