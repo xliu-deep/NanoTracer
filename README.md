@@ -1,5 +1,9 @@
 # NanoTracer
-(![numpy](https://img.shields.io/badge/numpy-v1.19-blue))
+![numpy](https://img.shields.io/badge/numpy-v1.23.1-blue)
+![pyGPGO](https://img.shields.io/badge/pyGPGO-v0.5.1-green)
+![hiclass](https://img.shields.io/badge/hiclass-v3.0.1-orange)
+
+
 
 
 > Advanced Machine Learning for Iron Oxide Nanoparticle Source Detection
