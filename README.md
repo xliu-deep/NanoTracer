@@ -2,7 +2,7 @@
 ![numpy](https://img.shields.io/badge/numpy-v1.23.1-blue)
 ![pyGPGO](https://img.shields.io/badge/pyGPGO-v0.5.1-green)
 ![xgboost](https://img.shields.io/badge/xgboost-v1.5.0-pink)
-![scikit-learn](https://img.shields.io/badge/xgboost-v1.1.0-violet)
+![scikit-learn](https://img.shields.io/badge/scikit-learn-v1.1.0-violet)
 ![hiclass](https://img.shields.io/badge/hiclass-v3.0.1-orange)
 ![matplotlib](https://img.shields.io/badge/matplotlib-v3.0.1-purple)
 ![pandas](https://img.shields.io/badge/pandas-v3.0.1-red)
