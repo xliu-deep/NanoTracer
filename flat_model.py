@@ -8,6 +8,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.model_selection import LeaveOneOut
 from xgboost import XGBClassifier
 
+
 np.random.seed(1)
 xgb = XGBClassifier()
 
@@ -55,6 +56,7 @@ with open(log_file,'w') as f:
 	f.write(','.join(['learning_rate', 'n_estimators',
 		'max_depth','F1','Precision','Recall'])+'\n')
 
+# hyperparameter search
 cov = matern32()
 gp = GaussianProcess(cov)
 acq = Acquisition(mode='UCB')

@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 # Classification boundary of three sources (engineered, natural, and incidental)
 def plot_contour_1():
+    # Load model file
     with open(f'models/{hiclass}/MgP.Engineered.pickle', 'rb') as fmodel:
         classifier_Engineered = pickle.load(fmodel)
     with open(f'models/{hiclass}/MgP.Incidental.pickle', 'rb') as fmodel:
@@ -14,17 +15,18 @@ def plot_contour_1():
     with open(f'models/{hiclass}/MgP.Natural.pickle', 'rb') as fmodel:
         classifier_Natural = pickle.load(fmodel)
 
+    # Load training data
     X_Engineered = X[y[:, 1] == 'MgP.Engineered', :]
     X_Natural = X[y[:, 1] == 'MgP.Natural', :]
     X_Incidental = X[y[:, 1] == 'MgP.Incidental', :]
 
+    # Load test data
     X_test_Engineered = X_test[y_test[:, 1] == 'MgP.Engineered', :]
     X_test_Natural = X_test[y_test[:, 1] == 'MgP.Natural', :]
     X_test_Incidental = X_test[y_test[:, 1] == 'MgP.Incidental', :]
 
     f = plt.figure()
     ax = f.add_subplot(111)
-
     # Scatter plot
     plt.plot(X_Engineered[:, 0], X_Engineered[:, 1], 'o', color='#3351FF',
              markeredgecolor='k', label='EMNPs', alpha=0.7)
@@ -53,6 +55,7 @@ def plot_contour_1():
     x_min, x_max = plt.xlim()
     y_min, y_max = plt.ylim()
 
+    # predict the meshgrid probability
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500),
                          np.linspace(y_min, y_max, 500))
     Z1_lp = classifier_Engineered.predict_proba(np.c_[xx.ravel(), yy.ravel()])
@@ -93,20 +96,23 @@ def plot_contour_1():
 
 # Classification boundary and predicted results of the chemical species of EMNPs (Fe3O4 and γ-Fe2O3) at the level 2
 def plot_contour_2():
+    # Load model file
     with open(f'models/{hiclass}/MgP.Engineered.Mgh.pickle', 'rb') as fmodel:
         classifier_Mgh = pickle.load(fmodel)
     with open(f'models/{hiclass}/MgP.Engineered.Mag.pickle', 'rb') as fmodel:
         classifier_Mag = pickle.load(fmodel)
 
+    # Load training data
     X_mag = X[y[:, 2] == 'MgP.Engineered.Mag', :]
     X_mgh = X[y[:, 2] == 'MgP.Engineered.Mgh', :]
     print(X_mag)
-
+    # Load test data
     X_test_mag = X_test[y_test[:, 2] == 'MgP.Engineered.Mag', :]
     X_test_mgh = X_test[y_test[:, 2] == 'MgP.Engineered.Mgh', :]
 
     f = plt.figure()
     ax = f.add_subplot(111)
+    # Scatter plot
     plt.plot(X_mag[:, 0], X_mag[:, 1], 'o', color='#3380FF',
              markeredgecolor='k', alpha=0.8, label=u'E-Fe$_3$O$_4$')
     plt.plot(X_mgh[:, 0], X_mgh[:, 1], 'o', color='#80BEE7',
@@ -126,7 +132,7 @@ def plot_contour_2():
     ax.set_xlim([-12, 15])
     x_min, x_max = plt.xlim()
     y_min, y_max = plt.ylim()
-
+    # predict the meshgrid probability
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500),
                          np.linspace(y_min, y_max, 500))
 
@@ -169,15 +175,16 @@ def plot_contour_3_mgh():
     with open(f'models/{hiclass}/MgP.Engineered.Mag.EA.pickle', 'rb') as fmodel:
         classifier_MagEA = pickle.load(fmodel)
 
-    # L4
+    # Load training data
     X_MghEP = X[(y[:, 3] == 'MgP.Engineered.Mgh.EP'), :]
     X_MghES = X[(y[:, 3] == 'MgP.Engineered.Mgh.ES'), :]
-
+    # Load test data
     X_test_MghEP = X_test[(y_test[:, 3] == 'MgP.Engineered.Mgh.EP'), :]
     X_test_MghES = X_test[(y_test[:, 3] == 'MgP.Engineered.Mgh.ES'), :]
 
     f = plt.figure()
     ax = f.add_subplot(111)
+    # Scatter plot
     plt.plot(X_MghEP[:, 0], X_MghEP[:, 1], 'o', color='#0099FF',
              markeredgecolor='k', alpha=0.8, label=u'E-$\gamma$-Fe$_2$O$_3$-EP')
     plt.plot(X_MghES[:, 0], X_MghES[:, 1], 'o', color='#00CC66',
@@ -198,8 +205,7 @@ def plot_contour_3_mgh():
     x_min, x_max = plt.xlim()
     y_min, y_max = plt.ylim()
 
-    plt.savefig('111.png')
-
+    # predict the meshgrid probability
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500),
                          np.linspace(y_min, y_max, 500))
     Z1_lp = classifier_MghEP.predict_proba(np.c_[xx.ravel(), yy.ravel()])
@@ -241,20 +247,20 @@ def plot_contour_3_mag():
     with open(f'models/{hiclass}/MgP.Engineered.Mag.EA.pickle', 'rb') as fmodel:
         classifier_MagEA = pickle.load(fmodel)
 
-    # L4
+    # Load training data
     X_MghEP = X[(y[:, 3] == 'MgP.Engineered.Mgh.EP'), :]
     X_MagEP = X[(y[:, 3] == 'MgP.Engineered.Mag.EP'), :]
     X_MagES = X[(y[:, 3] == 'MgP.Engineered.Mag.ES'), :]
     X_MagEA = X[(y[:, 3] == 'MgP.Engineered.Mag.EA'), :]
     print(X_MghEP)
-
+    # Load test data
     X_test_MagEP = X_test[(y_test[:, 3] == 'MgP.Engineered.Mag.EP'), :]
     X_test_MagES = X_test[(y_test[:, 3] == 'MgP.Engineered.Mag.ES'), :]
     X_test_MagEA = X_test[(y_test[:, 3] == 'MgP.Engineered.Mag.EA'), :]
 
     f = plt.figure()
     ax = f.add_subplot(111)
-
+    # Scatter plot
     plt.plot(X_MagEP[:, 0], X_MagEP[:, 1], 'o', color='#0099FF',
              markeredgecolor='k', alpha=0.8, label=u'E-Fe$_3$O$_4$-EP')
     plt.plot(X_MagES[:, 0], X_MagES[:, 1], 'o', color='#00CC66',
@@ -278,9 +284,7 @@ def plot_contour_3_mag():
     ax.set_xlim([-12, 15])
     x_min, x_max = plt.xlim()
     y_min, y_max = plt.ylim()
-
-    plt.savefig('111.png')
-
+    # predict the meshgrid probability
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500),
                          np.linspace(y_min, y_max, 500))
 
@@ -298,7 +302,7 @@ def plot_contour_3_mag():
     Z[Z5_l == 1] = 4
 
 
-    # Plot Contour Line####
+    # Plot Contour Line
     Z_MagEP = Z3_lp[:, 1].reshape(xx.shape)
     ax.contour(xx, yy, Z_MagEP, [0.7], linewidths=2.5, alpha=0.7, colors='#0099FF')
 
@@ -324,7 +328,6 @@ def list_to_array(lists, pad_value=0, max_length=None):
 
 
 hiclass = 'LCPN'
-
 # load traning set X,y
 X = np.loadtxt('data/X_train.txt', delimiter='\t')
 y = []

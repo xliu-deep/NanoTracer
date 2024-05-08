@@ -69,6 +69,7 @@ for hiclassmodel in hiclass_models:
 	with open(log_file,'w') as f:
 		f.write(','.join(['learning_rate', 'n_estimators',
 			'max_depth','F1'])+'\n')
+	# hyperparameter search
 	cov = matern32()
 	gp = GaussianProcess(cov)
 	acq = Acquisition(mode='UCB')
