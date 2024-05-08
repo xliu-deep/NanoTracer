@@ -1,4 +1,6 @@
 # NanoTracer
+https://img.shields.io/github/release/xliu-deep/NanoTracer
+
 
 > Advanced Machine Learning for Iron Oxide Nanoparticle Source Detection
 
